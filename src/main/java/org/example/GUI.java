@@ -33,8 +33,8 @@ public class GUI {
                 return;
             }
             try {
-                action.execute(text) ;
-                showInfo("The job is done");
+                String msg = action.execute(text);
+                showInfo(msg);
             }
             catch (GUIException g){
                 showError(g.getMessage());
@@ -45,7 +45,7 @@ public class GUI {
         });
     }
 
-    public void showInfo(String msg){
+    private void showInfo(String msg){
         infoText.setForeground(Color.black);
         infoText.setText(msg);
     }

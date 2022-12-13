@@ -17,12 +17,12 @@ public class Main {
 
         GUI gui = new GUI();
 
-        gui.onPark(e -> {
-            if (cars.containsKey(e)){
+        gui.onPark(inputNumber -> {
+            if (cars.containsKey(inputNumber)){
                 throw new GUIException("Car number already in the list");
             }
-            cars.put(e,LocalDateTime.now());
-            return e;
+            cars.put(inputNumber,LocalDateTime.now());
+            return "Car parked";
         });
 
         gui.onLeave(e ->{
@@ -32,8 +32,7 @@ public class Main {
             else {
                 LocalDateTime start = cars.get(e);
                 var hours = ChronoUnit.HOURS.between(start, LocalDateTime.now());
-                gui.showInfo("You must pay:" + priceFor((int) hours));
-                return e;
+                return  "You must pay: " + priceFor((int) hours);
             }
         });
 
